@@ -18,7 +18,9 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Locale;
 
 public class AdapterAbsensiCek extends RecyclerView.Adapter<AdapterAbsensiCek.CekViewHolder> {
     Context context;
@@ -27,6 +29,7 @@ public class AdapterAbsensiCek extends RecyclerView.Adapter<AdapterAbsensiCek.Ce
     Button btn_simpan;
     DatabaseReference database = FirebaseDatabase.getInstance().getReference();
     Dialog dialog;
+    SimpleDateFormat simpleDateFormat = new SimpleDateFormat("dd-MMMM-yyyy",new Locale("in","ID"));
 
     public AdapterAbsensiCek(Context context, ArrayList<mahasiswa> mahasiswaArrayList, ArrayList<dataAbsensi> absensiArrayList, Button btn_simpan, Dialog dialog) {
         this.context = context;
@@ -90,13 +93,13 @@ public class AdapterAbsensiCek extends RecyclerView.Adapter<AdapterAbsensiCek.Ce
         }
 
         @SuppressLint("SetTextI18n")
-        public void viewBind(mahasiswa mahasiswa) {
+        public void viewBind(final mahasiswa mahasiswa) {
             tv_nama.setText("Nama : " + mahasiswa.getNama());
             btn_simpan.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
                     for (int i = 0; i < absensiArrayList.size(); i++) {
-                        database.child("absen").push().setValue(new dataAbsensi(
+                        database.child("absen").child(absensiArrayList.get(i).getKey_mahasiswa()+"-"+simpleDateFormat.format(absensiArrayList.get(i).getTanggal())).setValue(new dataAbsensi(
                                 absensiArrayList.get(i).getKey_mahasiswa(),
                                 absensiArrayList.get(i).getTanggal(),
                                 absensiArrayList.get(i).getKehadiaran()
