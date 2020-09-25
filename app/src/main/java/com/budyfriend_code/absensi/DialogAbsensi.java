@@ -20,6 +20,7 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
+import java.util.Objects;
 
 public class DialogAbsensi extends DialogFragment {
     RecyclerView recyclerView;
@@ -35,6 +36,7 @@ public class DialogAbsensi extends DialogFragment {
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View v = inflater.inflate(R.layout.form_absensi, container, false);
+        context = v.getContext();
         recyclerView = v.findViewById(R.id.recyclerView);
         btn_simpan = v.findViewById(R.id.btn_simpan);
         dialog = getDialog();
@@ -66,5 +68,14 @@ public class DialogAbsensi extends DialogFragment {
 
             }
         });
+    }
+
+    @Override
+    public void onStart() {
+        super.onStart();
+        Dialog dialog = getDialog();
+        if (dialog != null) {
+            Objects.requireNonNull(dialog.getWindow()).setLayout(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
+        }
     }
 }

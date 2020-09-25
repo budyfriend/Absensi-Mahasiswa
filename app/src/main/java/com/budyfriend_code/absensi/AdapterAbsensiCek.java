@@ -101,7 +101,7 @@ public class AdapterAbsensiCek extends RecyclerView.Adapter<AdapterAbsensiCek.Ce
                                 absensiArrayList.get(i).getTanggal(),
                                 absensiArrayList.get(i).getKehadiaran()
                         ));
-                        if (i == absensiArrayList.size()) {
+                        if (i == absensiArrayList.size() - 1) {
                             Toast.makeText(context, "Data berhasil disimpan", Toast.LENGTH_SHORT).show();
                             dialog.dismiss();
                         }

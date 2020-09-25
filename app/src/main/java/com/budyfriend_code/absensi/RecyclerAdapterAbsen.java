@@ -30,7 +30,7 @@ public class RecyclerAdapterAbsen extends RecyclerView.Adapter<RecyclerAdapterAb
     private List<dataAbsensi> dataAbsensiList;
     AppCompatActivity context;
     DatabaseReference database = FirebaseDatabase.getInstance().getReference();
-    SimpleDateFormat simpleDateFormat = new SimpleDateFormat("dd-MMMM-yyyy",new Locale("in","ID"));
+
 
     public RecyclerAdapterAbsen(List<dataAbsensi> dataAbsensiList, AppCompatActivity context) {
         this.dataAbsensiList = dataAbsensiList;
