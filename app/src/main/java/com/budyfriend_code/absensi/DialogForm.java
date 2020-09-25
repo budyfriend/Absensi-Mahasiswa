@@ -62,10 +62,13 @@ public class DialogForm extends DialogFragment {
         et_semester = v.findViewById(R.id.et_semester);
         btn_simpan = v.findViewById(R.id.btn_simpan);
 
-        et_nama.setText(nama);
-        et_fakultas.setText(fakultas);
-        et_jurusan.setText(jurusan);
-        et_semester.setText(semester);
+        if (pilih.equals("Ubah")){
+            et_nama.setText(nama);
+            et_fakultas.setText(fakultas);
+            et_jurusan.setText(jurusan);
+            et_semester.setText(semester);
+        }
+
         title.setText(pilih + " Data");
 
         btn_simpan.setOnClickListener(new View.OnClickListener() {
